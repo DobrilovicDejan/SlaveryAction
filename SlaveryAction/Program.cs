@@ -28,6 +28,3 @@ app.MapControllers();
 app.Run();
 
 
-RequestType tip_p = RequestType.NumberOf;
-Device device = new Device(01, null);
-device.newRequest(tip_p);

@@ -1,6 +1,7 @@
 using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace SlaveryAction.Controllers;
 
 [ApiController]
@@ -26,7 +27,7 @@ public class DeviceRequests : ControllerBase
         
         var jsonObject = new JsonObject
         {
-            { "request", TypeToString(_request) }
+            { "request", GeneralUse.TypeToString(_request) }
         };
 
         return Ok(jsonObject);
@@ -46,7 +47,9 @@ public class DeviceRequests : ControllerBase
 
         return GenerateResult(response.Result.IsSuccessStatusCode, tip_trazenja, responseString);
     }
-
+    
+    
+    
     private async Task<HttpResponseMessage> SendRequest(string url, RequestType tip_trazenja, string? body)
     {
         var client = new HttpClient();
@@ -60,11 +63,12 @@ public class DeviceRequests : ControllerBase
         {
             { "status", success ? "success" : "error" },
             { "information", information },
-            { "request", TypeToString(_request)}
+            { "request", GeneralUse.TypeToString(_request)}
         };
         return StatusCode(success ? 200 : 400, jsonObject);
     }
     
+    /*
     [ApiController]
     [Route("device")]
     public class DeviceRequestController : ControllerBase
@@ -80,28 +84,9 @@ public class DeviceRequests : ControllerBase
         }
     }
     
+    */
     
     
-    public static string TypeToString(RequestType requestType)
-    {
-        string tipT;
-        switch (requestType)
-        {
-            case RequestType.RawDataOf:
-                tipT = "rawdataof";
-                break;
-            case RequestType.StructOf:
-                tipT = "structof";
-                break;
-            case RequestType.NumberOf:
-                tipT = "numberof";
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(requestType), requestType, null);
-        }
-
-        return tipT;
-    } 
     
 }
 

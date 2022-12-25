@@ -34,4 +34,8 @@ public class Device
         return suck;
 
     }
+    public override string ToString()
+    {
+        return GeneralUse.TypeToString(tip_potrage);
+    }
 }
