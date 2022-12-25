@@ -8,7 +8,7 @@ public class ProxyRequests : ControllerBase
 {
     private readonly bool _status = false; 
     
-    [HttpGet("/device/status", Name = "Get the status of the device server.")]
+    [HttpGet("/proxy/status", Name = "Get the status of the proxy server.")]
     public IActionResult Status()
     {
         var jsonObject = new JsonObject
@@ -19,7 +19,7 @@ public class ProxyRequests : ControllerBase
         return Ok(jsonObject);
     }
 
-    [HttpPost("/device/request", Name = "Request a http request from the device server.")]
+    [HttpPost("/proxy/request", Name = "Request a http request from the proxy server.")]
     public IActionResult NewRequest(string url, string? type, string? body)
     {
         if (url.Length < 2)
