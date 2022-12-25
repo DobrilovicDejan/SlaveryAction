@@ -18,7 +18,7 @@ public class Device
 
     public bool newRequest(RequestType tip_potrage)
     {
-        string url = "/device/request";
+        string url = "http://localhost:5248/device/request";
         bool suck = false;
         try
         {
